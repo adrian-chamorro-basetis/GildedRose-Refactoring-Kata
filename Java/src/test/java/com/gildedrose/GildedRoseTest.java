@@ -97,13 +97,13 @@ class GildedRoseTest {
     @Test
     void sulfurasNeverDecreaseSellInAndQualityAsTimePasses() {
         Item[] items = new Item[]{
-            new Item("Sulfuras, Hand of Ragnaros", 1, 50)
+            new Item("Sulfuras, Hand of Ragnaros", 1, 80)
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
 
         assertItemSellIn(app.items[0], 1);
-        assertItemQuality(app.items[0], 50);
+        assertItemQuality(app.items[0], 80);
     }
 
     @Test
@@ -161,6 +161,23 @@ class GildedRoseTest {
         app.updateQuality();
 
         assertItemQuality(app.items[0], 0);
+    }
+
+    @Test
+    void conjuredItemsQualityDegradesTwiceAsFast() {
+        Item[] items = new Item[]{
+            new Item("Conjured Mana Cake", 3, 6),
+            new Item("Conjured Mana Cake", 0, 6),
+            new Item("Conjured Mana Cake", 5, 1),
+            new Item("Conjured Mana Cake", 0, 1)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertItemQuality(app.items[0], 4);
+        assertItemQuality(app.items[1], 2);
+        assertItemQuality(app.items[2], 0);
+        assertItemQuality(app.items[3], 0);
     }
 
     private void assertItemQuality(Item item, int expectedQuality) {
