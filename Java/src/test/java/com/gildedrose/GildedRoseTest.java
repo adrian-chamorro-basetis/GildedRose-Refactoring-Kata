@@ -27,8 +27,8 @@ class GildedRoseTest {
 
         GildedRose app = createAndUpdateQuality(items);
 
-        assertItemSellIn(app.items[0], 9);
-        assertItemSellIn(app.items[1], 4);
+        assertItemSellIn(getItem(app, 0), 9);
+        assertItemSellIn(getItem(app, 1), 4);
     }
 
     @Test
@@ -40,8 +40,8 @@ class GildedRoseTest {
 
         GildedRose app = createAndUpdateQuality(items);
 
-        assertItemQuality(app.items[0], 19);
-        assertItemQuality(app.items[1], 29);
+        assertItemQuality(getItem(app, 0), 19);
+        assertItemQuality(getItem(app, 1), 29);
     }
 
     @Test
@@ -53,8 +53,8 @@ class GildedRoseTest {
 
         GildedRose app = createAndUpdateQuality(items);
 
-        assertItemQuality(app.items[0], 2);
-        assertItemQuality(app.items[1], 1);
+        assertItemQuality(getItem(app, 0), 2);
+        assertItemQuality(getItem(app, 1), 1);
     }
 
     @Test
@@ -66,15 +66,15 @@ class GildedRoseTest {
 
         GildedRose app = createAndUpdateQuality(items);
 
-        assertItemQuality(app.items[0], 0);
-        assertItemQuality(app.items[1], 0);
+        assertItemQuality(getItem(app, 0), 0);
+        assertItemQuality(getItem(app, 1), 0);
     }
 
     @Test
     void agedBrieIncreaseQualityWhenOlder() {
         Item[] items = ItemMother.createSingle("Aged Brie", 1, 0);
         GildedRose app = createAndUpdateQuality(items);
-        assertItemQuality(app.items[0], 1);
+        assertItemQuality(getItem(app, 0), 1);
     }
 
     @Test
@@ -86,8 +86,8 @@ class GildedRoseTest {
 
         GildedRose app = createAndUpdateQuality(items);
 
-        assertItemQuality(app.items[0], 50);
-        assertItemQuality(app.items[1], 49);
+        assertItemQuality(getItem(app, 0), 50);
+        assertItemQuality(getItem(app, 1), 49);
     }
 
     @Test
@@ -96,8 +96,8 @@ class GildedRoseTest {
 
         GildedRose app = createAndUpdateQuality(items);
 
-        assertItemSellIn(app.items[0], 1);
-        assertItemQuality(app.items[0], 80);
+        assertItemSellIn(getItem(app, 0), 1);
+        assertItemQuality(getItem(app, 0), 80);
     }
 
     @Test
@@ -136,10 +136,10 @@ class GildedRoseTest {
         );
         GildedRose app = createAndUpdateQuality(items);
 
-        assertItemQuality(app.items[0], 4);
-        assertItemQuality(app.items[1], 2);
-        assertItemQuality(app.items[2], 0);
-        assertItemQuality(app.items[3], 0);
+        assertItemQuality(getItem(app, 0), 4);
+        assertItemQuality(getItem(app, 1), 2);
+        assertItemQuality(getItem(app, 2), 0);
+        assertItemQuality(getItem(app, 3), 0);
     }
 
     private static void assertItemQuality(Item item, int expectedQuality) {
@@ -159,6 +159,10 @@ class GildedRoseTest {
     private void assertBackstagePassesQuality(int sellIn, int initialQuality, int expectedQuality) {
         Item[] items = ItemMother.createSingleBackstagePass(sellIn, initialQuality);
         GildedRose app = createAndUpdateQuality(items);
-        assertItemQuality(app.items[0], expectedQuality);
+        assertItemQuality(getItem(app, 0), expectedQuality);
+    }
+
+    private static Item getItem(GildedRose app, int index) {
+        return app.getItems()[index];
     }
 }
