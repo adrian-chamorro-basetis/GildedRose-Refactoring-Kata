@@ -22,7 +22,7 @@ class GildedRoseTest {
     void itemSellInDecreasesBy1AsTimePasses() {
         Item[] items = new Item[]{
             new Item("Item", 10, 20),
-            new Item("ITem", 5, 30)
+            new Item("Item", 5, 30)
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -35,7 +35,7 @@ class GildedRoseTest {
     void itemQualityDecreasesBy1AsTimePasses() {
         Item[] items = new Item[]{
             new Item("Item", 10, 20),
-            new Item("ITem", 5, 30)
+            new Item("Item", 5, 30)
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -48,7 +48,7 @@ class GildedRoseTest {
     void itemQualityDegradeTwiceFasterWhenSellInPassed() {
         Item[] items = new Item[]{
             new Item("Item", 0, 4),
-            new Item("ITem", 0, 3)
+            new Item("Item", 0, 3)
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
